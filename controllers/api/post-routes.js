@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -10,13 +11,14 @@ router.get('/', (req, res) => {
                 model: Comment,
                 attributes: ['id', 'text', 'user_id'],
                 include: {
+                    model: User,
                     attributes: ['username']
                 }
             },
             {
                 model: User,
                 attributes: ['username']
-            },
+            }
         ]
     }).then(dbPostData => res.json(dbPostData))
     .catch(err => {
