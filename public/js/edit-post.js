@@ -17,7 +17,7 @@ async function editPostHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashsboard');
+        document.location.replace('/dashboard');
     } else {
         alert(response.statusText);
     }
