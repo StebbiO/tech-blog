@@ -1,5 +1,3 @@
-const { json } = require("express/lib/response");
-
 async function createPostHandler(event) {
     event.preventDefault();
 
@@ -9,7 +7,7 @@ async function createPostHandler(event) {
     if (content) {
         const response = await fetch('api/posts', {
             method: 'POST',
-            body: json.stringify({ title, content }),
+            body: JSON.stringify({ title, content }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -23,4 +21,4 @@ async function createPostHandler(event) {
     }
 };
 
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+document.querySelector('.new-post-form').addEventListener('submit', createPostHandler);
